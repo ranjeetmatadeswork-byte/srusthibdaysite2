@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>For Srushti 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --rose: #e8a0bf;
+  --plum: #7c3aed;
+  --lavender: #c4b5fd;
+  --blush: #fce7f3;
+  --deep: #1a0533;
+  --gold: #f0c674;
+  --text-light: #d8b4fe;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;}
+
+body{
+  background:#0d0117;
+  font-family:'DM Sans',sans-serif;
+  color:#e9d5ff;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+.cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--lavender);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s ease,width 0.2s,height 0.2s,background 0.2s;
+  mix-blend-mode:screen;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(196,181,253,0.4);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease, opacity 0.3s;
+}
+
+/* STARS BG */
+#stars-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+
+/* NAV DOTS */
+.nav-dots{
+  position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);
+  z-index:100;display:flex;flex-direction:column;gap:0.6rem;
+}
+.nav-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(196,181,253,0.3);
+  cursor:pointer;transition:all 0.3s;
+}
+.nav-dot.active{background:var(--lavender);transform:scale(1.4);}
+
+/* SECTIONS */
+section{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:4rem 2rem;
+  scroll-snap-align:start;
+}
+
+/* ===== HERO ===== */
+#hero{
+  overflow:hidden;
+}
+
+.hero-bg-glow{
+  position:absolute;
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(124,58,237,0.25) 0%, transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6;}
+  50%{transform:translate(-50%,-50%) scale(1.15);opacity:1;}
+}
+
+.hero-content{text-align:center;position:relative;}
+
+.eyebrow{
+  font-family:'DM Sans',sans-serif;
+  font-weight:200;font-size:0.75rem;
+  letter-spacing:0.5em;text-transform:uppercase;
+  color:var(--rose);
+  opacity:0;animation:fadeUp 1s ease forwards 0.3s;
+}
+
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,14vw,10rem);
+  font-weight:300;
+  line-height:0.9;
+  margin:1rem 0;
+  opacity:0;animation:fadeUp 1.2s ease forwards 0.7s;
+}
+
+.hero-title .line1{
+  display:block;
+  background:linear-gradient(135deg,#e8a0bf,#c4b5fd,#a78bfa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-title .line2{
+  display:block;
+  font-style:italic;font-size:0.55em;
+  color:#d8b4fe;
+  -webkit-text-fill-color:#d8b4fe;
+}
+
+.hero-sub{
+  font-size:0.9rem;font-weight:200;
+  color:rgba(216,180,254,0.6);
+  letter-spacing:0.15em;
+  margin-top:2rem;
+  opacity:0;animation:fadeUp 1s ease forwards 1.2s;
+}
+
+.scroll-cue{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.4rem;
+  opacity:0;animation:fadeIn 1s ease forwards 2.5s;
+}
+.scroll-cue span{font-size:0.65rem;letter-spacing:0.3em;color:rgba(196,181,253,0.4);}
+.scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(196,181,253,0.5),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{
+  0%,100%{transform:scaleY(1);opacity:0.5;}
+  50%{transform:scaleY(1.3);opacity:1;}
+}
+
+/* ===== COUNTDOWN ===== */
+#countdown{
+  background:linear-gradient(180deg, #0d0117 0%, #140825 50%, #0d0117 100%);
+}
+
+.countdown-label{
+  font-family:'DM Sans',sans-serif;
+  font-size:0.7rem;letter-spacing:0.5em;text-transform:uppercase;
+  color:var(--rose);margin-bottom:1rem;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.8s ease;
+}
+
+.countdown-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,5vw,3rem);
+  font-weight:300;font-style:italic;
+  color:#e9d5ff;text-align:center;
+  margin-bottom:3rem;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.8s ease 0.2s;
+}
+
+.countdown-grid{
+  display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;
+  opacity:0;transform:translateY(30px);
+  transition:all 0.8s ease 0.4s;
+}
+
+.countdown-item{
+  display:flex;flex-direction:column;align-items:center;
+  background:rgba(124,58,237,0.08);
+  border:1px solid rgba(196,181,253,0.12);
+  border-radius:16px;padding:1.5rem 2rem;
+  min-width:100px;
+  backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+}
+
+.countdown-item::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(196,181,253,0.4),transparent);
+}
+
+.countdown-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,8vw,4.5rem);
+  font-weight:300;
+  background:linear-gradient(135deg,#e8a0bf,#c4b5fd);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  line-height:1;
+}
+
+.countdown-unit{
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(216,180,254,0.4);margin-top:0.5rem;
+}
+
+.birthday-msg{
+  margin-top:2rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-style:italic;
+  color:var(--rose);text-align:center;
+  opacity:0;transition:opacity 0.8s ease;
+}
+
+.section-visible .countdown-label,
+.section-visible .countdown-heading,
+.section-visible .countdown-grid{
+  opacity:1;transform:translateY(0);
+}
+
+/* ===== LETTER SECTIONS ===== */
+.reveal-section{
+  position:relative;z-index:1;
+  max-width:680px;margin:0 auto;
+  padding:6rem 2rem;
+  scroll-snap-align:start;
+}
+
+.chapter{
+  font-size:1.6rem;letter-spacing:0.5em;text-transform:uppercase;
+  color:rgba(232,160,191,0.5);margin-bottom:2rem;
+  opacity:0;transform:translateY(15px);
+  transition:all 0.7s ease;
+}
+
+.reveal-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,6vw,3.5rem);
+  font-weight:300;
+  color:#e9d5ff;
+  margin-bottom:2rem;line-height:1.2;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.8s ease 0.1s;
+}
+
+.prose{
+  font-size:1rem;line-height:1.95;
+  color:rgba(233,213,255,0.65);
+  font-weight:300;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.8s ease 0.2s;
+}
+
+.prose p{margin-bottom:1.5rem;}
+
+.pull-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,3.5vw,1.8rem);
+  font-style:italic;
+  color:var(--lavender);
+  border-left:2px solid rgba(232,160,191,0.3);
+  padding-left:1.5rem;
+  margin:2rem 0;
+  line-height:1.5;
+  opacity:0;transform:translateX(-20px);
+  transition:all 0.9s ease 0.3s;
+}
+
+.reveal-section.visible .chapter,
+.reveal-section.visible h2,
+.reveal-section.visible .prose,
+.reveal-section.visible .pull-quote{
+  opacity:1;transform:translate(0,0);
+}
+
+/* MEMORY CARD */
+.memory-card{
+  background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(232,160,191,0.08));
+  border:1px solid rgba(196,181,253,0.15);
+  border-radius:20px;padding:2.5rem;
+  text-align:center;
+  position:relative;overflow:hidden;
+  opacity:0;transform:scale(0.96);
+  transition:all 0.8s ease 0.4s;
+}
+
+.memory-card::after{
+  content:'';
+  position:absolute;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle at center,rgba(196,181,253,0.05) 0%,transparent 60%);
+  animation:shimmer 4s linear infinite;
+}
+
+@keyframes shimmer{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+.memory-date{
+  font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--rose);margin-bottom:1.2rem;
+}
+
+.memory-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:300;
+  color:#e9d5ff;line-height:1.6;
+}
+
+.reveal-section.visible .memory-card{
+  opacity:1;transform:scale(1);
+}
+
+/* JOKE CARD */
+.secret-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(232,160,191,0.2);
+  border-radius:20px;padding:3rem 2rem;
+  text-align:center;
+  position:relative;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.8s ease 0.3s;
+}
+
+.secret-icon{font-size:3rem;display:block;margin-bottom:1.5rem;animation:float 3s ease-in-out infinite;}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+.secret-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-style:italic;
+  color:#d8b4fe;line-height:1.6;
+}
+
+.secret-note{
+  margin-top:1rem;font-size:0.85rem;
+  color:rgba(216,180,254,0.4);
+}
+
+.reveal-section.visible .secret-card{
+  opacity:1;transform:translateY(0);
+}
+
+/* ===== CLOSING ===== */
+#closing{
+  text-align:center;
+  background:linear-gradient(180deg,#0d0117 0%,#1a0533 100%);
+  scroll-snap-align:start;
+}
+
+.heart-container{
+  position:relative;display:inline-block;
+  margin-bottom:2rem;
+  opacity:0;transform:scale(0.5);
+  transition:all 1s cubic-bezier(0.34,1.56,0.64,1) 0.2s;
+}
+
+.heart-big{
+  font-size:5rem;
+  display:block;
+  animation:heartbeat 2s ease-in-out infinite;
+  filter:drop-shadow(0 0 30px rgba(232,160,191,0.5));
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  15%{transform:scale(1.15);}
+  30%{transform:scale(1);}
+  45%{transform:scale(1.08);}
+}
+
+.closing-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,9vw,6rem);
+  font-weight:300;
+  background:linear-gradient(135deg,#e8a0bf 0%,#c4b5fd 50%,#f0c674 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:0.5rem;
+  opacity:0;transform:translateY(20px);
+  transition:all 0.9s ease 0.4s;
+}
+
+.closing-sub{
+  font-size:0.9rem;font-weight:200;
+  color:rgba(216,180,254,0.5);
+  letter-spacing:0.15em;
+  margin-bottom:3rem;
+  opacity:0;transition:opacity 0.8s ease 0.7s;
+}
+
+.signature-wrap{
+  opacity:0;transition:all 0.8s ease 0.9s;
+  transform:translateY(10px);
+}
+
+.signature-line{
+  width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(196,181,253,0.4),transparent);
+  margin:0 auto 1.5rem;
+}
+
+.signature{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-style:italic;
+  color:var(--lavender);
+}
+
+#closing.section-visible .heart-container,
+#closing.section-visible .closing-title,
+#closing.section-visible .closing-sub,
+#closing.section-visible .signature-wrap{
+  opacity:1;transform:translate(0,0) scale(1);
+}
+
+/* DIVIDER ORNAMENT */
+.ornament{
+  text-align:center;
+  color:rgba(196,181,253,0.2);
+  font-size:1rem;letter-spacing:1rem;
+  padding:2rem 0;
+  user-select:none;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeIn{
+  from{opacity:0;}to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav class="nav-dots" id="navDots">
+  <div class="nav-dot active" data-section="0"></div>
+  <div class="nav-dot" data-section="1"></div>
+  <div class="nav-dot" data-section="2"></div>
+  <div class="nav-dot" data-section="3"></div>
+  <div class="nav-dot" data-section="4"></div>
+  <div class="nav-dot" data-section="5"></div>
+  <div class="nav-dot" data-section="6"></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-content">
+    <p class="eyebrow">written with every piece of my heart</p>
+    <h1 class="hero-title">
+      <span class="line1">Srushti</span>
+      <span class="line2">the universe's finest accident</span>
+    </h1>
+    <p class="hero-sub">scroll slowly · feel everything</p>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+  <p class="countdown-label">something beautiful is coming</p>
+  <h2 class="countdown-heading">Something special is 21 days away...</h2>
+  <div class="countdown-grid">
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-days">00</span>
+      <span class="countdown-unit">days</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-hours">00</span>
+      <span class="countdown-unit">hours</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-mins">00</span>
+      <span class="countdown-unit">minutes</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-secs">00</span>
+      <span class="countdown-unit">seconds</span>
+    </div>
+  </div>
+  <p class="birthday-msg" id="bdayMsg"></p>
+</section>
+
+<!-- LETTER 1 -->
+<div class="reveal-section" id="s1">
+  <p class="chapter">I · a beginning</p>
+  <h2>My Dearest Srushti,</h2>
+  <div class="prose">
+    <p>If I'm honest, I don't think I understood what it meant to feel something deeply until you happened.</p>
+    <p>You changed the way my days feel.<br/>You changed the way silence feels.<br/>You changed the way I look at the future.</p>
+  </div>
+  <p class="pull-quote">"You are not just someone I love. You are someone I never want to lose."</p>
+  <div class="prose">
+    <p>And that thought alone tells me how real this is. How certain I am. How much you truly mean to me.</p>
+  </div>
+</div>
+
+<!-- MEMORY -->
+<div class="reveal-section" id="s2">
+  <p class="chapter">II · the date</p>
+  <h2>The Night Everything Changed</h2>
+  <div class="memory-card">
+    <p class="memory-date">March 26, 2025</p>
+    <p class="memory-text">The day we became official. The day I finally got to call you mine — and mean it with every single thing I had in me. I did not know one date could hold so much weight. So much warmth. So much <em>us</em>.</p>
+  </div>
+  <div class="prose" style="margin-top:2rem;">
+    <p>Every moment since then has been my favourite. Not because they were perfect — but because they were with you. Every ordinary second becomes something worth keeping when you are in it.</p>
+  </div>
+</div>
+
+<!-- LETTER 2 -->
+<div class="reveal-section" id="s3">
+  <p class="chapter">III · what i love about you!!!</p>
+  <h2>Everything, if you must know.</h2>
+  <div class="prose">
+    <p>Everything. If I am speaking without restraint — everything.</p>
+    <p>They say love teaches you to compromise, to accept pieces, to quietly tolerate what does not fit. But loving you has never felt like compromise. It has felt like recognition. Like something in me stood up and said, <em>there — that's her.</em></p>
+    <p>I do not love you selectively. I do not love you conditionally. I do not love you only when it is easy.</p>
+    <p>I love the intensity. The overthinking. The stubbornness. The softness you pretend not to have. The moods. The silence. The warmth. The fire.</p>
+    <p>There has never been a moment where I wished you were less. If anything, I am in awe of how completely you are yourself.</p>
+  </div>
+  <p class="pull-quote">"You are not simply my favourite person. You are the gravity my heart quietly orbits."</p>
+  <div class="prose">
+    <p>There is no version of you I would edit. No trait I would tone down. No edge I would smooth away.</p>
+    <p>You are exact. Unfiltered. Unapologetic. Alive in a way that makes everything else feel smaller in comparison.</p>
+    <p>And loving you does not feel like something that might fade.<br/>It feels permanent.<br/>It feels chosen.<br/>It feels terrifyingly certain. 💜</p>
+  </div>
+</div>
+
+<!-- SECRET -->
+<div class="reveal-section" id="s4">
+  <p class="chapter">IV · only ours</p>
+  <h2>Our Little Secret</h2>
+  <div class="secret-card">
+    <span class="secret-icon">🍔</span>
+    <p class="secret-text">You know exactly what I mean when I say I want to go to Burger King... and wash my hands.</p>
+    <p class="secret-note">Only we will ever understand that. And I love that it lives only between us — forever.</p>
+  </div>
+</div>
+
+<!-- BIRTHDAY -->
+<div class="reveal-section" id="s5">
+  <p class="chapter">V · just because</p>
+  <h2>You deserve to know this today.</h2>
+  <div class="prose">
+    <p>I did not need a special occasion to tell you this. I just needed you to know — right now, today — that you are one of the most extraordinary people I have ever had the privilege of loving.</p>
+    <p>I wish I could give you the whole world. I am working on it. Until then — I give you this. Every word here is real. Every feeling is true. Every single one belongs to you.</p>
+  </div>
+  <p class="pull-quote">"You do not need a birthday to be celebrated. You deserve to feel this loved on every ordinary Tuesday, every quiet evening, every single unremarkable day."</p>
+  <div class="prose">
+    <p>I am so unspeakably lucky. I hope you carry this with you always. On ordinary days, hard days, and on March 23rd — especially then.</p>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<section id="closing">
+  <div class="heart-container">
+    <span class="heart-big">💜</span>
+  </div>
+  <h2 class="closing-title">You are so loved,<br/>Srushti</h2>
+  <p class="closing-sub">every single day — deeply, completely loved</p>
+  <div class="signature-wrap">
+    <div class="signature-line"></div>
+    <p class="signature">Forever yours, Ranjeet 💜</p>
+  </div>
+</section>
+
+<script>
+// ── CURSOR ──────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+
+(function animRing(){
+  rx+=(mx-rx)*0.12;
+  ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+// ── STARS ───────────────────────────────────────────
+const canvas = document.getElementById('stars-canvas');
+const ctx = canvas.getContext('2d');
+let stars=[];
+
+function resizeCanvas(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+
+function initStars(){
+  stars=[];
+  for(let i=0;i<180;i++){
+    stars.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:Math.random()*1.2+0.2,
+      a:Math.random(),
+      speed:Math.random()*0.003+0.001,
+      twinkle:Math.random()*Math.PI*2
+    });
+  }
+}
+
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    s.twinkle+=s.speed;
+    const alpha=0.3+0.5*Math.sin(s.twinkle);
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(196,181,253,${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resizeCanvas();initStars();drawStars();
+window.addEventListener('resize',()=>{resizeCanvas();initStars();});
+
+// ── COUNTDOWN ────────────────────────────────────────
+function updateCountdown(){
+  const target = new Date('2026-03-23T00:00:00');
+  const now = new Date();
+  const diff = target - now;
+
+  if(diff <= 0){
+    document.getElementById('cd-days').textContent='00';
+    document.getElementById('cd-hours').textContent='00';
+    document.getElementById('cd-mins').textContent='00';
+    document.getElementById('cd-secs').textContent='00';
+    const msg = document.getElementById('bdayMsg');
+    msg.style.opacity='1';
+    msg.textContent='🎂 Happy Birthday, Srushti. Today, the world celebrates you. 💜';
+    return;
+  }
+
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+
+  document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+// ── SCROLL REVEAL ────────────────────────────────────
+const allSections = [
+  document.getElementById('hero'),
+  document.getElementById('countdown'),
+  ...document.querySelectorAll('.reveal-section'),
+  document.getElementById('closing')
+];
+
+const dots = document.querySelectorAll('.nav-dot');
+
+function getActive(){
+  let closest=0;
+  let minDist=Infinity;
+  allSections.forEach((s,i)=>{
+    const dist=Math.abs(s.getBoundingClientRect().top);
+    if(dist<minDist){minDist=dist;closest=i;}
+  });
+  return closest;
+}
+
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible','section-visible');
+    }
+  });
+},{threshold:0.2});
+
+document.querySelectorAll('.reveal-section, #countdown, #closing')
+  .forEach(el=>revealObs.observe(el));
+
+// Nav dots
+window.addEventListener('scroll',()=>{
+  const active=getActive();
+  dots.forEach((d,i)=>d.classList.toggle('active',i===active));
+},{ passive:true });
+
+dots.forEach((d,i)=>{
+  d.addEventListener('click',()=>{
+    allSections[i]?.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// ── FLOATING HEARTS on click ──────────────────────────
+document.addEventListener('click', e=>{
+  for(let i=0;i<5;i++){
+    const h=document.createElement('div');
+    h.style.cssText=`
+      position:fixed;left:${e.clientX}px;top:${e.clientY}px;
+      font-size:${Math.random()*14+10}px;
+      pointer-events:none;z-index:9999;
+      animation:floatHeart ${Math.random()*1+1}s ease forwards;
+      transform:translate(-50%,-50%);
+    `;
+    h.textContent=['💜','✦','·','♡','*'][Math.floor(Math.random()*5)];
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
+  }
+});
+
+const style=document.createElement('style');
+style.textContent=`
+@keyframes floatHeart{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+  100%{opacity:0;transform:translate(${Math.random()>0.5?'':'-'}${Math.random()*40+20}px,-${Math.random()*80+40}px) scale(0.5);}
+}`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
